@@ -4,21 +4,19 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.thomas.hangangn.HomeFragment">
+    tools:context="com.example.thomas.hangangn.view.fragment.HomeFragment">
 
     <TextView
+        android:id="@+id/fragment_home_tv"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:text="나의 한강공원을 찾아보세요"
         android:textSize="20sp"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:gravity="center"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/fragment_home_rv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

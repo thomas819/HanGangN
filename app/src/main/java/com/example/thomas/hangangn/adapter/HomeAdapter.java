@@ -17,7 +17,8 @@ public class HomeAdapter extends BaseQuickAdapter<Place,BaseViewHolder>{
 
     @Override
     protected void convert(BaseViewHolder helper, Place item) {
-        helper.setText(R.id.home_item_btn,item.getName())
+        helper
+                .setText(R.id.home_item_btn,item.getName())
                 .setBackgroundRes(R.id.home_item_btn,item.getImg());
     }
 }

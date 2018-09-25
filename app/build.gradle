@@ -4,11 +4,13 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.example.thomas.hangangn"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+
     }
     buildTypes {
         release {
@@ -39,16 +41,18 @@ dependencies {
     implementation 'com.github.florent37:rxjsoup:1.0.4'
     annotationProcessor 'com.github.florent37:retrojsoup-compiler:1.0.4'
 
-    //don't forget to include jsoup & rxjava
-    implementation 'org.jsoup:jsoup:1.10.2'
-    implementation 'io.reactivex.rxjava2:rxjava:2.0.7'
+//    //don't forget to include jsoup & rxjava
+//    implementation 'org.jsoup:jsoup:1.10.2'
+//    implementation 'io.reactivex.rxjava2:rxjava:2.0.7'
+//
+//    //optionaly
+//    implementation 'com.squareup.okhttp3:okhttp:3.6.0'
+    implementation group: 'org.jsoup', name: 'jsoup', version: '1.11.3'
 
-    //optionaly
-    implementation 'com.squareup.okhttp3:okhttp:3.6.0'
 
-
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version") {
+        exclude group: 'org.jetbrains', module: 'annotations'
+    }
 }
 repositories {
     jcenter()
