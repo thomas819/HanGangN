@@ -16,12 +16,14 @@ import com.example.thomas.hangangn.adapter.HomeAdapter;
 import com.example.thomas.hangangn.domain.Place;
 import com.example.thomas.hangangn.model.Address;
 import com.example.thomas.hangangn.view.activity.DetailActivity;
+import com.example.thomas.hangangn.view.fragment.bottomsheet.HomeBottomFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 
@@ -36,7 +38,7 @@ public class HomeFragment extends Fragment {
     Unbinder unbinder;
     int[] imgs = {R.drawable.gangseo, R.drawable.gwangnaru, R.drawable.nanji, R.drawable.ttukseom, R.drawable.mangwon, R.drawable.banpo, R.drawable.yanghwa, R.drawable.yeouido, R.drawable.leechon, R.drawable.jamwon, R.drawable.jamsil};
     String[] placeName = {"강서", "광나루", "난지", "뚝섬", "망원", "반포", "양화", "여의도", "이촌", "잠원", "잠실"};
-
+    String[] placeUniqueName = {"GIGU012", "GIGU002", "GIGU010", "GIGU003", "GIGU011", "GIGU005", "GIGU009", "GIGU007", "GIGU006", "GIGU004", "GIGU001"};
 
     List<Place> list = new ArrayList<>();
 
@@ -52,6 +54,8 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         unbinder = ButterKnife.bind(this, view);
+
+
         list.clear();
         for (int i = 0; i < placeName.length; i++) {
             Place place = new Place();
@@ -61,15 +65,14 @@ public class HomeFragment extends Fragment {
         }
 
 
-
-        HomeAdapter homeAdapter = new HomeAdapter(R.layout.home_item, list);
+        HomeAdapter homeAdapter = new HomeAdapter(R.layout.layout_home_item, list);
         homeAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Intent intent =new Intent(getActivity(), DetailActivity.class);
-                intent.putExtra("placeName",placeName[position]);
-                intent.putExtra("placeImg",imgs[position]);
-                intent.putExtra("placeUrl",Address.get().get(position));
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
+                intent.putExtra("placeName", placeName[position]);
+                intent.putExtra("placeImg", imgs[position]);
+                intent.putExtra("placeUrl", Address.get().get(position));
                 startActivity(intent);
             }
         });
@@ -83,5 +86,11 @@ public class HomeFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @OnClick(R.id.fragment_home_filterBtn)
+    public void onViewClicked() {
+        HomeBottomFragment homeBottomFragment = new HomeBottomFragment();
+        homeBottomFragment.show(getActivity().getSupportFragmentManager(), "bottom sheet");
     }
 }

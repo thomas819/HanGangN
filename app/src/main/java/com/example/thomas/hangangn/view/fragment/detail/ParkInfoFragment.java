@@ -130,12 +130,17 @@ public class ParkInfoFragment extends Fragment {
                 htmlDocument.body().empty().append(element.toString());
                 final String html = htmlDocument.toString();
 
-                uiHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mWebView.loadData(html, "text/html", "UTF-8");
-                    }
-                });
+
+                    uiHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            if(html !=null){
+                                mWebView.loadData(html, "text/html", "utf-8");
+                            }
+                        }
+                    });
+
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

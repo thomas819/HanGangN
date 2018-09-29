@@ -112,9 +112,17 @@ public class ParkParkingFragment extends Fragment {
                 uiHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        mWebView.loadData(html, "text/html", "UTF-8");
+                        try {
+                            if (html != null) {
+                                mWebView.loadData(html, "text/html", "utf-8");
+                            }
+                        } catch (NullPointerException e) {
+                            System.out.println(e.getMessage());
+                        }
+
                     }
                 });
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

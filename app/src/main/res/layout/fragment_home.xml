@@ -9,7 +9,8 @@
     <TextView
         android:id="@+id/fragment_home_tv"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="0dp"
+        android:layout_weight="2"
         android:text="나의 한강공원을 찾아보세요"
         android:textSize="20sp"
         android:gravity="center"/>
@@ -17,6 +18,23 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/fragment_home_rv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        android:layout_weight="6"/>
+
+    <Button
+        android:id="@+id/fragment_home_filterBtn"
+        android:layout_weight="0.8"
+        android:background="@drawable/drawable_home_filter"
+        android:textColor="#ffffff"
+        android:text="필터로 검색하기"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:gravity="center_vertical"
+        android:paddingStart="24dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:drawableRight="@drawable/ic_arrow_up"
+        android:paddingRight="20dp"/>
 
 </LinearLayout>

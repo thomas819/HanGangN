@@ -108,18 +108,21 @@ public class ParkEnjoyFragment extends Fragment {
         protected Void doInBackground(Void... voids) {
             try {
                 Document htmlDocument = Jsoup.connect("http://hangang.seoul.go.kr/archives/" + enjoy).get();
-                Element element = htmlDocument.select("div:not(.map_1) div[id=post_content]").first();
+                Element element = htmlDocument.select("div[id=post_content]:not(.map_area)").first();
 
                 // replace body with selected element
                 htmlDocument.body().empty().append(element.toString());
                 final String html = htmlDocument.toString();
+                    uiHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            if(html !=null){
+                                mWebView.loadData(html, "text/html", "utf-8");
+                            }
+                        }
+                    });
 
-                uiHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mWebView.loadData(html, "text/html", "UTF-8");
-                    }
-                });
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

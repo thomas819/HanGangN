@@ -83,7 +83,7 @@ public class DetailActivity extends AppCompatActivity {
                 return 3;
             }
         });
-
+        mViewpager.setOffscreenPageLimit(3);
         mViewpager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
 
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
