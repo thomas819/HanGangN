@@ -2,6 +2,8 @@ package com.example.thomas.hangangn.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -33,6 +35,11 @@ public class DetailActivity extends AppCompatActivity {
     String name;
     int img;
     String[] urlList;
+    @BindView(R.id.activity_detail_toolbarLayout)
+    CollapsingToolbarLayout activityDetailToolbarLayout;
+    @BindView(R.id.activity_detail_AppBarLayout)
+    AppBarLayout activityDetailAppBarLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,14 +54,13 @@ public class DetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         name = intent.getStringExtra("placeName");
         img = intent.getIntExtra("placeImg", 0);
-        urlList= intent.getStringArrayExtra("placeUrl");
+        urlList = intent.getStringArrayExtra("placeUrl");
         mToolbar.setTitle(name + "한강공원");
         //mToolbar.setBackgroundColor(getResources().getColor());
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-        System.out.println("detailActivity"+urlList[0]+","+urlList[1]+","+urlList[2]);
+        System.out.println("detailActivity" + urlList[0] + "," + urlList[1] + "," + urlList[2]);
 
         mTv.setText(name + "한강공원");
         mTv.setBackgroundResource(img);
@@ -108,7 +114,7 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id ==android.R.id.home){
+        if (id == android.R.id.home) {
             finish();
             return true;
         }
