@@ -61,6 +61,7 @@ public class HomeFragment extends Fragment {
             Place place = new Place();
             place.setImg(imgs[i]);
             place.setName(placeName[i]);
+            place.setPlaceName(placeUniqueName[i]);
             list.add(place);
         }
 

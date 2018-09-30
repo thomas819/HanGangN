@@ -9,6 +9,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.thomas.hangangn.R;
 import com.example.thomas.hangangn.domain.Place;
+import com.example.thomas.hangangn.domain.Row;
+import com.example.thomas.hangangn.util.RxEventBus;
 
 import java.util.List;
 
@@ -24,6 +26,18 @@ public class HomeAdapter extends BaseQuickAdapter<Place, BaseViewHolder> {
         helper.setText(R.id.home_item_tv, item.getName());
         Glide.with(mContext).load(item.getImg()).apply(new RequestOptions().centerCrop().autoClone()).into((ImageView) helper.getView(R.id.home_item_img));
 
-        helper.setVisible(R.id.home_item_color,true);
+
+        RxEventBus.getInstance().getObservable().subscribe(data -> {
+            List<Row> lists = (List<Row>) data;
+            helper.setVisible(R.id.home_item_color, false);
+            for (int i = 0; i < lists.size(); i++) {
+                if (lists.get(i).getGIGU().equals(item.getPlaceName())) {
+                    helper.setVisible(R.id.home_item_color, true);
+                }
+            }
+
+        });
+
+
     }
 }

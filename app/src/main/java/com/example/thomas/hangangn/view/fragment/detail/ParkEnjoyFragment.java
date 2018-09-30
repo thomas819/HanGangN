@@ -113,14 +113,18 @@ public class ParkEnjoyFragment extends Fragment {
                 // replace body with selected element
                 htmlDocument.body().empty().append(element.toString());
                 final String html = htmlDocument.toString();
-                    uiHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            if(html !=null){
+                uiHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (html != null) {
+                            try {
                                 mWebView.loadData(html, "text/html", "utf-8");
+                            } catch (NullPointerException e) {
                             }
+
                         }
-                    });
+                    }
+                });
 
 
             } catch (IOException e) {

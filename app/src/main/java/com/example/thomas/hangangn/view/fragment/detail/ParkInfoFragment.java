@@ -134,9 +134,15 @@ public class ParkInfoFragment extends Fragment {
                     uiHandler.post(new Runnable() {
                         @Override
                         public void run() {
+
                             if(html !=null){
-                                mWebView.loadData(html, "text/html", "utf-8");
+                                try{
+                                    mWebView.loadData(html, "text/html", "utf-8");
+                                }catch (NullPointerException e){
+
+                                }
                             }
+
                         }
                     });
 
