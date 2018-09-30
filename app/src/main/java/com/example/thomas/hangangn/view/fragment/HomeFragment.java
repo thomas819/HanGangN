@@ -57,6 +57,7 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -68,9 +69,17 @@ public class HomeFragment extends Fragment {
         RxEventBus.getInstance().getObservable().subscribe(data -> {
             if (data instanceof String) {
                 String placeName = (String) data;
-                homeTv.setVisibility(View.GONE);
-                topLl.setVisibility(View.VISIBLE);
-                topTv.setText(placeName);
+                try{
+                    if(homeTv !=null && topLl !=null){
+                        homeTv.setVisibility(View.GONE);
+                        topLl.setVisibility(View.VISIBLE);
+                        topTv.setText(placeName);
+                    }
+                }catch (NullPointerException e){
+
+                }
+
+
             }
         });
 

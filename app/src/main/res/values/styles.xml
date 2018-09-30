@@ -20,4 +20,8 @@
     <style name="toolbarHomeColor" parent="@style/ThemeOverlay.AppCompat.ActionBar">
         <item name="colorControlNormal">@color/handgangGreen</item>
     </style>
+
+    <style name="sheetDialog" parent="Theme.Design.BottomSheetDialog">
+        <item name="android:colorBackground">@android:color/transparent</item>
+    </style>
 </resources>
