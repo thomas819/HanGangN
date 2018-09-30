@@ -9,12 +9,15 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.thomas.hangangn.R;
 import com.example.thomas.hangangn.adapter.HomeAdapter;
 import com.example.thomas.hangangn.domain.Place;
 import com.example.thomas.hangangn.model.Address;
+import com.example.thomas.hangangn.util.RxEventBus;
 import com.example.thomas.hangangn.view.activity.DetailActivity;
 import com.example.thomas.hangangn.view.fragment.bottomsheet.HomeBottomFragment;
 
@@ -42,11 +45,17 @@ public class HomeFragment extends Fragment {
 
     List<Place> list = new ArrayList<>();
 
+    @BindView(R.id.fragment_home_tv)
+    TextView homeTv;
+
+    @BindView(R.id.fragment_home_top_tv)
+    TextView topTv;
+    @BindView(R.id.fragment_home_top_ll)
+    LinearLayout topLl;
 
     public HomeFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,8 +63,21 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         unbinder = ButterKnife.bind(this, view);
+        initRv();
 
+        RxEventBus.getInstance().getObservable().subscribe(data -> {
+            if (data instanceof String) {
+                String placeName = (String) data;
+                homeTv.setVisibility(View.GONE);
+                topLl.setVisibility(View.VISIBLE);
+                topTv.setText(placeName);
+            }
+        });
 
+        return view;
+    }
+
+    private void initRv() {
         list.clear();
         for (int i = 0; i < placeName.length; i++) {
             Place place = new Place();
@@ -64,7 +86,6 @@ public class HomeFragment extends Fragment {
             place.setPlaceName(placeUniqueName[i]);
             list.add(place);
         }
-
 
         HomeAdapter homeAdapter = new HomeAdapter(R.layout.layout_home_item, list);
         homeAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -80,7 +101,6 @@ public class HomeFragment extends Fragment {
         mRv.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
         //mRv.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRv.setAdapter(homeAdapter);
-        return view;
     }
 
     @Override

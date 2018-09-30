@@ -28,14 +28,15 @@ public class HomeAdapter extends BaseQuickAdapter<Place, BaseViewHolder> {
 
 
         RxEventBus.getInstance().getObservable().subscribe(data -> {
-            List<Row> lists = (List<Row>) data;
-            helper.setVisible(R.id.home_item_color, false);
-            for (int i = 0; i < lists.size(); i++) {
-                if (lists.get(i).getGIGU().equals(item.getPlaceName())) {
-                    helper.setVisible(R.id.home_item_color, true);
+            if (data instanceof List) {
+                List<Row> lists = (List<Row>) data;
+                helper.setVisible(R.id.home_item_color, false);
+                for (int i = 0; i < lists.size(); i++) {
+                    if (lists.get(i).getGIGU().equals(item.getPlaceName())) {
+                        helper.setVisible(R.id.home_item_color, true);
+                    }
                 }
             }
-
         });
 
 

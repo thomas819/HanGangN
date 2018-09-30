@@ -35,11 +35,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeBottomFragment extends BottomSheetDialogFragment {
 
-    @BindView(R.id.fragment_home_botttom_sport_Rv) RecyclerView sportRv;
-    @BindView(R.id.fragment_home_botttom_child_Rv) RecyclerView childRv;
-    @BindView(R.id.fragment_home_botttom_facilities_Rv) RecyclerView facilitiesRv;
-    @BindView(R.id.fragment_home_botttom_water_Rv) RecyclerView waterRv;
-    @BindView(R.id.fragment_home_botttom_way_Rv) RecyclerView wayRv;
+    @BindView(R.id.fragment_home_botttom_sport_Rv)
+    RecyclerView sportRv;
+    @BindView(R.id.fragment_home_botttom_child_Rv)
+    RecyclerView childRv;
+    @BindView(R.id.fragment_home_botttom_facilities_Rv)
+    RecyclerView facilitiesRv;
+    @BindView(R.id.fragment_home_botttom_water_Rv)
+    RecyclerView waterRv;
+    @BindView(R.id.fragment_home_botttom_way_Rv)
+    RecyclerView wayRv;
     Unbinder unbinder;
 
 
@@ -72,32 +77,34 @@ public class HomeBottomFragment extends BottomSheetDialogFragment {
                 "GeoInfoTrackWGS", "GeoInfoWoodballWGS", "GeoInfoXgameWGS", "GeoInfoArcheryWGS", "GeoInfoParkGolfWGS", "GeoInfoTennisWGS",
                 "GeoInfoGateballWGS", "GeoInfoBasketballWGS", "GeoInfoVolleyballWGS", "GeoInfoSoccerWGS");
 
-        initRv(sportRv,place,placeUrl);
+        initRv(sportRv, place, placeUrl);
     }
 
     private void initChild() {
         List<String> place = Arrays.asList("자연학습장", "간이어린이야구장", "어린이놀이터");
         List<String> placeUrl = Arrays.asList("GeoInfoNatureStudyWGS", "GeoInfoBaseballWGS", "GeoInfoPlaygroundWGS");
-        initRv(childRv,place,placeUrl);
+        initRv(childRv, place, placeUrl);
     }
 
-    private void initFacilities(){
-        List<String> place = Arrays.asList("식수대", "매점", "주차장","자전거대여소","자전거보관소","공원안내소");
-        List<String> placeUrl = Arrays.asList("GeoInfoDrinkWaterWGS", "GeoInfoStoreWGS", "GeoInfoParkParkingWGS","GeoInfoBicycleLendWGS","GeoInfoBicycleStorageWGS","GeoInfoParkOfficeWGS");
-        initRv(facilitiesRv,place,placeUrl);
+    private void initFacilities() {
+        List<String> place = Arrays.asList("식수대", "매점", "주차장", "자전거대여소", "자전거보관소", "공원안내소");
+        List<String> placeUrl = Arrays.asList("GeoInfoDrinkWaterWGS", "GeoInfoStoreWGS", "GeoInfoParkParkingWGS", "GeoInfoBicycleLendWGS", "GeoInfoBicycleStorageWGS", "GeoInfoParkOfficeWGS");
+        initRv(facilitiesRv, place, placeUrl);
     }
-    private void initWater(){
-        List<String> place = Arrays.asList("수상레저", "수상훈련장", "오리배선착장","수상관광콜택시","수영장");
-        List<String> placeUrl = Arrays.asList("GeoInfoWaterLeisureWGS", "GeoInfoWaterTrainingWGS", "GeoInfoDuckBoatWGS","GeoInfoWaterTaxiWGS","GeoInfoPoolWGS");
-        initRv(waterRv,place,placeUrl);
+
+    private void initWater() {
+        List<String> place = Arrays.asList("수상레저", "수상훈련장", "오리배선착장", "수상관광콜택시", "수영장");
+        List<String> placeUrl = Arrays.asList("GeoInfoWaterLeisureWGS", "GeoInfoWaterTrainingWGS", "GeoInfoDuckBoatWGS", "GeoInfoWaterTaxiWGS", "GeoInfoPoolWGS");
+        initRv(waterRv, place, placeUrl);
     }
-    private void initWay(){
+
+    private void initWay() {
         List<String> place = Arrays.asList("보행자도로", "인라인도로");
         List<String> placeUrl = Arrays.asList("GeoInfoWorkRoadWGS", "GeoInfoInlineRoadWGS");
-        initRv(wayRv,place,placeUrl);
+        initRv(wayRv, place, placeUrl);
     }
 
-    private void initRv(RecyclerView rv,List<String> placeName, List<String> placeUrl) {
+    private void initRv(RecyclerView rv, List<String> placeName, List<String> placeUrl) {
 
         List<Filters> list = new ArrayList<>();
         for (int i = 0; i < placeName.size(); i++) {
@@ -113,6 +120,7 @@ public class HomeBottomFragment extends BottomSheetDialogFragment {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 initRetrofit(placeUrl.get(position));
+                RxEventBus.getInstance().sendEvent(placeName.get(position));
             }
         });
 

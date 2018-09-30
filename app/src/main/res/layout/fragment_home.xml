@@ -15,6 +15,34 @@
         android:textSize="20sp"
         android:gravity="center"/>
 
+    <LinearLayout
+        android:id="@+id/fragment_home_top_ll"
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:id="@+id/fragment_home_top_tv"
+            android:text="론 볼링장"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@drawable/drawable_fragment_home_choice"/>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:text="선택된 필터가 녹색으로 표시됩니다"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/fragment_home_rv"
         android:layout_width="match_parent"
@@ -23,7 +51,7 @@
 
     <Button
         android:id="@+id/fragment_home_filterBtn"
-        android:layout_weight="0.8"
+        android:layout_weight="0.7"
         android:background="@drawable/drawable_home_filter"
         android:textColor="#ffffff"
         android:text="필터로 검색하기"
